@@ -2,6 +2,7 @@ add_rules("mode.debug", "mode.release")
 
 target("c_project")
     set_kind("binary")
+    set_languages("c11")
     add_files("src/*.c")
 
 --
