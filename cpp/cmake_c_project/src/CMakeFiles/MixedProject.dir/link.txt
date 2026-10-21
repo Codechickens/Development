@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/MixedProject.dir/link.d CMakeFiles/MixedProject.dir/main.c.o -o MixedProject

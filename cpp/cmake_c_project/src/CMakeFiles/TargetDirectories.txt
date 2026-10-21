@@ -1,0 +1,3 @@
+/home/bachdo/Development/cpp/cmake_c_project/src/CMakeFiles/MixedProject.dir
+/home/bachdo/Development/cpp/cmake_c_project/src/CMakeFiles/edit_cache.dir
+/home/bachdo/Development/cpp/cmake_c_project/src/CMakeFiles/rebuild_cache.dir

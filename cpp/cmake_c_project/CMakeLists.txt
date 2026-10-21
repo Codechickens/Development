@@ -10,6 +10,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-add_executable(MixedProject
-  src/main.c
-)
+add_executable(MixedProject "src/main.c")
