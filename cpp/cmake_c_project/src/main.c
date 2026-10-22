@@ -2,62 +2,64 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-struct Node{
+struct sNode{
   int data;
-  struct Node *next;
+  struct sNode* next;
 };
 
-void initNode(struct Node **first){
-  *first = NULL;
-};
-
-bool emptyStack(struct Node *first){
-  return first == NULL;
-}
-
-void push(struct Node **first, const int value){
-  struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-  if (!newNode) {
-    printf("Cant malloc\n");
-    return;
+struct sNode* initNode(int value){
+  struct sNode *newNode = (struct sNode*)malloc(sizeof(struct sNode));
+  if (newNode == NULL){
+    printf("Heap overflow");
+    exit(1);
   }
 
   newNode->data = value;
-  newNode->next = *first;
-  *first = newNode;
-  printf("Stack: %d\n", value);
+  newNode->next = NULL;
+  return newNode;
 }
 
-int pop(struct Node **first){
-  if (emptyStack(*first)){
-    printf("Nothing in stack\n");
-    return -1;
+bool emptyNode(struct sNode* head){
+  return head == NULL;
+}
+void insertHead(struct sNode** head, int value){
+  struct sNode* newNode = initNode(value);
+  newNode->next =  *head;
+  *head = newNode;
+}
+
+void insertEnd(struct sNode** head, int value){
+  if (emptyNode(*head)){
+    *head = initNode(value);
+    return;
   }
 
-  struct Node *temp = *first;
-  int ret = temp->data;
-  *first = (*first)->next;
-  free(temp);
-  return ret;
-}
+  struct sNode* newNode = initNode(value);
+  struct sNode* curr = *head;
 
-int top(struct Node *first){
-  if (emptyStack(first)) {
-    printf("Nothing in stack\n");
-    return -1;
+  while(curr->next!=NULL){
+    curr = curr->next;
   }
-  return first->data;
+  curr->next=newNode;
 }
 
+void getVal(struct sNode* head){
+  if(emptyNode(head)){
+    printf("NULL\n");
+    return;
+  }
+  while (head != NULL) {
+    printf("[%d] -> ", head->data);
+    head = head->next;
+  }
+  printf("NULL\n");
+}
 int main(){
-  struct Node *s;
-  initNode(&s);
-  push(&s, 10);
-  push(&s,100);
-  push(&s, 9);
+  struct sNode *n = NULL;
 
-  pop(&s);
+  insertHead(&n, 99);
+  insertEnd(&n, 100);
 
-  printf("%d\n", top(s));
+  getVal(n);
 
 }
